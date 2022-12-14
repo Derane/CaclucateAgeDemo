@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:h2:F:\database\Users;
+    username: h2database
+    password: h2database
