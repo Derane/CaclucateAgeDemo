@@ -38,7 +38,7 @@ public class UserControllerAdvice extends ResponseEntityExceptionHandler {
 				.collect(collectingAndThen(
 						toList(),
 						details -> ResponseEntity.badRequest()
-								.body(new ErrorResponse("Validation failed!", details))
+								.body(new ErrorResponse("Have no user with this ID", details))
 				));
 	}
 }
