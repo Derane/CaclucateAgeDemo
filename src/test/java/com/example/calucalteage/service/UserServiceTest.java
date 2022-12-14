@@ -10,7 +10,8 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static java.util.Optional.*;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -22,7 +23,8 @@ public class UserServiceTest {
 
 	@Test
 	public void calculateAge() {
-		Optional<User> user = of(new User(1, "Name", "Lastname", LocalDate.of(2001, 3, 3)));
+		Optional<User> user = of(new User(1, "Name", "Lastname",
+				LocalDate.of(2001, 3, 3)));
 		when(userRepository.findById(eq(1))).thenReturn(user);
 		UserDto byId = userService.findById(1);
 		assertThat(byId.age()).isEqualTo(21);
