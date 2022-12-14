@@ -18,13 +18,13 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
 
 	private final UserRepository userRepository = mock(UserRepository.class);
-	private final UserService gameController = new UserServiceImpl(userRepository);
+	private final UserService userService = new UserServiceImpl(userRepository);
 
 	@Test
 	public void calculateAge() {
 		Optional<User> user = of(new User(1, "Name", "Lastname", LocalDate.of(2001, 3, 3)));
 		when(userRepository.findById(eq(1))).thenReturn(user);
-		UserDto byId = gameController.findById(1);
+		UserDto byId = userService.findById(1);
 		assertThat(byId.age()).isEqualTo(21);
 	}
 
@@ -32,6 +32,6 @@ public class UserServiceTest {
 	public void calculateAgeWithNonExistUser() {
 		Optional<User> user = empty();
 		when(userRepository.findById(any())).thenReturn(user);
-		gameController.findById(1);
+		userService.findById(1);
 	}
 }

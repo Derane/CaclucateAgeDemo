@@ -6,9 +6,7 @@ import com.example.calucalteage.service.UserService;
 import com.example.calucalteage.service.impl.UserServiceImpl;
 import lombok.SneakyThrows;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,18 +22,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
-	private final UserService gameService = mock(UserServiceImpl.class);
-	private final UserController gameController = new UserController(gameService);
+	private final UserService userService = mock(UserServiceImpl.class);
+	private final UserController userController = new UserController(userService);
 
 	@Test
 	@SneakyThrows
 	public void calculateAgeRequest() {
 
-		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(gameController)
+		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController)
 				.setControllerAdvice(new UserControllerAdvice()).build();
 
 		UserDto userDto = new UserDto("Name", "Lastname", 18);
-		when(gameService.findById(eq(2))).thenReturn(userDto);
+		when(userService.findById(eq(2))).thenReturn(userDto);
 		mockMvc.perform(get("/users/2"))
 				.andDo(print())
 				.andExpect(status().isOk())
