@@ -23,7 +23,7 @@ public class UserControllerAdvice extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(NotFoundUserException.class)
 	@ResponseStatus(BAD_REQUEST)
-	public ApiError handleGameException(NotFoundUserException userException) {
+	public ApiError handleUserException(NotFoundUserException userException) {
 		return userException::getMessage;
 	}
 
