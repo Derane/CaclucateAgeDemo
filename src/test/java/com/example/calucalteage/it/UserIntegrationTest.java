@@ -31,8 +31,8 @@ public class UserIntegrationTest {
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().json("{" +
-						"name:nave," +
-						"lastname:family," +
+						"name:Valerii," +
+						"lastname:Sierhieiev," +
 						"age:21" +
 						"}"));
 	}
